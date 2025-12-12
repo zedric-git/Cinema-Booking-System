@@ -1,0 +1,114 @@
+[
+  {
+    "Name": "Popcorn Regular",
+    "Category": "Food",
+    "Price": 85,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "Popcorn Large",
+    "Category": "Food",
+    "Price": 120,
+    "Stock": 99,
+    "ReorderLevel": 20,
+    "TotalSold": 1
+  },
+  {
+    "Name": "Popcorn Paper Bucket",
+    "Category": "Food",
+    "Price": 140,
+    "Stock": 99,
+    "ReorderLevel": 20,
+    "TotalSold": 1
+  },
+  {
+    "Name": "Classic Hotdog",
+    "Category": "Food",
+    "Price": 95,
+    "Stock": 99,
+    "ReorderLevel": 20,
+    "TotalSold": 1
+  },
+  {
+    "Name": "Chicken Nuggets",
+    "Category": "Food",
+    "Price": 140,
+    "Stock": 99,
+    "ReorderLevel": 20,
+    "TotalSold": 1
+  },
+  {
+    "Name": "Classic Fries",
+    "Category": "Food",
+    "Price": 60,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "Cheese Fries",
+    "Category": "Food",
+    "Price": 75,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "BBQ Fries",
+    "Category": "Food",
+    "Price": 75,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "Sour Cream Fries",
+    "Category": "Food",
+    "Price": 75,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "Regular Soda",
+    "Category": "Beverage",
+    "Price": 45,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "Large Soda",
+    "Category": "Beverage",
+    "Price": 80,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "Bottled Water",
+    "Category": "Beverage",
+    "Price": 35,
+    "Stock": 100,
+    "ReorderLevel": 20,
+    "TotalSold": 0
+  },
+  {
+    "Name": "Iced Tea",
+    "Category": "Beverage",
+    "Price": 45,
+    "Stock": 99,
+    "ReorderLevel": 20,
+    "TotalSold": 1
+  },
+  {
+    "Name": "Iced Coffee",
+    "Category": "Beverage",
+    "Price": 50,
+    "Stock": 96,
+    "ReorderLevel": 20,
+    "TotalSold": 4
+  }
+]

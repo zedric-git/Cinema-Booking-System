@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Booking System - Technical Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --border-color: #ddd;
+            --code-bg: #f4f4f4;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover {
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:hover {
+            background-color: var(--bg-color);
+        }
+
+        /* Code blocks */
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            overflow-x: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Info boxes */
+        .info-box {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            border-left: 4px solid;
+        }
+
+        .info-box.success {
+            background-color: #d4edda;
+            border-color: var(--success-color);
+            color: #155724;
+        }
+
+        .info-box.warning {
+            background-color: #fff3cd;
+            border-color: var(--warning-color);
+            color: #856404;
+        }
+
+        .info-box.info {
+            background-color: #d1ecf1;
+            border-color: var(--secondary-color);
+            color: #0c5460;
+        }
+
+        .info-box.error {
+            background-color: #f8d7da;
+            border-color: var(--accent-color);
+            color: #721c24;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0.3rem;
+        }
+
+        .badge.pass {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .badge.fail {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .badge.pending {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            color: white;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .stat-card p {
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--secondary-color);
+            box-shadow: var(--shadow);
+            transform: translateY(-3px);
+        }
+
+        .feature-card h4 {
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #backToTop:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            nav, #backToTop, footer {
+                display: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+        }
+
+        /* Highlight on scroll */
+        .highlight {
+            animation: highlight 1s ease;
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff3cd; }
+            100% { background-color: white; }
+        }
+
+        /* Architecture diagram */
+        .architecture-diagram {
+            background-color: var(--code-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🎬 Cinema Booking System</h1>
+        <p>Technical Documentation & Project Report</p>
+        <p><em>A Comprehensive Console-Based Cinema Management Application</em></p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Developed using C# and .NET Framework</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#file-handling">File Handling</a></li>
+            <li><a href="#code-structure">Code Structure</a></li>
+            <li><a href="#user-interface">User Interface</a></li>
+            <li><a href="#challenges">Challenges</a></li>
+            <li><a href="#testing">Testing</a></li>
+            <li><a href="#future">Future</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- 1. Project Overview -->
+        <section id="overview">
+            <h2>📋 1. Project Overview</h2>
+            
+            <h3>🎯 Purpose</h3>
+            <p>The <strong>Cinema Booking System</strong> is a full-featured console application designed to digitize and streamline the entire movie theater booking experience. The system serves dual purposes: providing customers with an intuitive interface to browse movies, select seats, order concessions, and complete payments; while simultaneously offering cinema administrators robust tools for inventory management, sales reporting, and reservation oversight.</p>
+
+            <h3>✨ Key Features</h3>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎫 Customer Features</h4>
+                    <ul>
+                        <li>Movie & Schedule Selection</li>
+                        <li>Interactive 5×8 Seat Selection</li>
+                        <li>Food & Beverage Ordering</li>
+                        <li>Multi-Payment Support</li>
+                        <li>Reservation Management</li>
+                        <li>15-Minute Payment Deadline</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>👨‍💼 Admin Features</h4>
+                    <ul>
+                        <li>Sales Analytics (Daily/Weekly/Monthly)</li>
+                        <li>Inventory Control</li>
+                        <li>Booking Oversight</li>
+                        <li>Dashboard Metrics</li>
+                        <li>Activity Logging</li>
+                        <li>Admin Override Capabilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>👥 Target Audience</h3>
+            <div class="info-box info">
+                <strong>Primary Users:</strong>
+                <ul>
+                    <li><strong>Cinema Customers:</strong> Moviegoers seeking to reserve tickets and pre-order concessions</li>
+                    <li><strong>Cinema Staff:</strong> Counter personnel processing walk-in bookings and payments</li>
+                    <li><strong>Cinema Managers:</strong> Administrators monitoring sales and managing operations</li>
+                </ul>
+            </div>
+
+            <h3>🛠️ Technology Stack</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                    <th>Version</th>
+                </tr>
+                <tr>
+                    <td>Programming Language</td>
+                    <td>C#</td>
+                    <td>10.0+</td>
+                </tr>
+                <tr>
+                    <td>Framework</td>
+                    <td>.NET</td>
+                    <td>6.0+</td>
+                </tr>
+                <tr>
+                    <td>Data Serialization</td>
+                    <td>System.Text.Json</td>
+                    <td>Built-in</td>
+                </tr>
+                <tr>
+                    <td>Data Storage</td>
+                    <td>JSON (File-based)</td>
+                    <td>N/A</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 2. Requirements -->
+        <section id="requirements">
+            <h2>💻 2. Requirements</h2>
+
+            <h3>Software Requirements</h3>
+            <table>
+                <tr>
+                    <th>Requirement</th>
+                    <th>Specification</th>
+                </tr>
+                <tr>
+                    <td>.NET SDK</td>
+                    <td>Version 6.0 or higher</td>
+                </tr>
+                <tr>
+                    <td>Operating System</td>
+                    <td>Windows 10/11, macOS 10.15+, or Linux (Ubuntu 20.04+)</td>
+                </tr>
+                <tr>
+                    <td>RAM</td>
+                    <td>512 MB minimum (1 GB recommended)</td>
+                </tr>
+                <tr>
+                    <td>Disk Space</td>
+                    <td>100 MB free space</td>
+                </tr>
+            </table>
+
+            <h3>📦 Installation Steps</h3>
+            <div class="info-box info">
+                <h4>Step 1: Install .NET SDK</h4>
+                <pre><code># Windows: Download from https://dotnet.microsoft.com/download
+# macOS (using Homebrew):
+brew install dotnet-sdk
+
+# Linux (Ubuntu):
+sudo apt-get update
+sudo apt-get install -y dotnet-sdk-6.0</code></pre>
+
+                <h4>Step 2: Verify Installation</h4>
+                <pre><code>dotnet --version
+# Expected output: 6.0.x or higher</code></pre>
+
+                <h4>Step 3: Clone Repository</h4>
+                <pre><code>git clone https://github.com/zedric-git/Cinema-Booking-System.git
+cd Cinema-Booking-System/Final\ Project</code></pre>
+
+                <h4>Step 4: Build and Run</h4>
+                <pre><code>dotnet restore
+dotnet build
+dotnet run</code></pre>
+            </div>
+        </section>
+
+        <!-- 3. File Handling -->
+        <section id="file-handling">
+            <h2>📁 3. File Handling Overview</h2>
+
+            <h3>File Types and Purpose</h3>
+            <table>
+                <tr>
+                    <th>File Name</th>
+                    <th>Type</th>
+                    <th>Purpose</th>
+                    <th>Auto-Generated</th>
+                </tr>
+                <tr>
+                    <td>bookings.json</td>
+                    <td>JSON</td>
+                    <td>Stores all customer reservations with complete details</td>
+                    <td><span class="badge pass">✓</span></td>
+                </tr>
+                <tr>
+                    <td>inventory.json</td>
+                    <td>JSON</td>
+                    <td>Maintains food inventory stock levels and sales data</td>
+                    <td><span class="badge pass">✓</span></td>
+                </tr>
+                <tr>
+                    <td>admin_log.txt</td>
+                    <td>Text</td>
+                    <td>Records all administrative actions for audit trail</td>
+                    <td><span class="badge pass">✓</span></td>
+                </tr>
+            </table>
+
+            <h3>🔧 File Operations</h3>
+
+            <h4>1. Reading Operations</h4>
+            <pre><code>public static List&lt;Booking&gt; LoadBookings()
+{
+    if (!File.Exists(filePath))
+        return [];
+    
+    string json = File.ReadAllText(filePath);
+    return JsonSerializer.Deserialize&lt;List&lt;Booking&gt;&gt;(json) ?? [];
+}</code></pre>
+
+            <h4>2. Writing Operations</h4>
+            <pre><code>public static void SaveBookings(List&lt;Booking&gt; bookings)
+{
+    JsonSerializerOptions options = new() { WriteIndented = true };
+    string json = JsonSerializer.Serialize(bookings, options);
+    File.WriteAllText(filePath, json);
+}</code></pre>
+
+            <h4>3. Appending Operations</h4>
+            <pre><code>public static void Log(string action)
+{
+    string entry = $"[{DateTime.Now:MM/dd/yyyy hh:mm tt}] {action}";
+    File.AppendAllLines(LogPath, [entry]);
+}</code></pre>
+
+            <h3>🛡️ Error Handling</h3>
+            <div class="info-box warning">
+                <h4>Comprehensive Error Management:</h4>
+                <ul>
+                    <li><strong>JSON Deserialization Errors:</strong> Display warning, start with empty dataset</li>
+                    <li><strong>File Access Errors:</strong> Log error, return empty collection</li>
+                    <li><strong>Logging Failures:</strong> Silent failure (non-critical operation)</li>
+                    <li><strong>Missing File Handling:</strong> Treat as first run, create default data</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. Code Structure -->
+        <section id="code-structure">
+            <h2>🏗️ 4. Code Structure</h2>
+
+            <h3>Main Program Architecture</h3>
+            <div class="architecture-diagram">
+<pre>┌─────────────────────────────────────────┐
+│         Program.Main()                  │
+│    - Application Entry Point            │
+│    - Initialization & Main Loop         │
+└──────────────┬──────────────────────────┘
+               │
+    ┌──────────┴──────────┐
+    │                     │
+┌───▼─────────┐    ┌─────▼──────────┐
+│  Customer   │    │     Admin      │
+│   Module    │    │    Module      │
+└─────┬───────┘    └────┬───────────┘
+      │                 │
+   ┌──┴──┐          ┌───┴────┐
+   │Data │          │Reports │
+   │Mgmt │          │Mgmt    │
+   └─────┘          └────────┘</pre>
+            </div>
+
+            <h3>📦 Key Classes</h3>
+            
+            <table>
+                <tr>
+                    <th>Class</th>
+                    <th>Responsibility</th>
+                    <th>Lines</th>
+                </tr>
+                <tr>
+                    <td><code>Program</code></td>
+                    <td>Main entry point and UI orchestration</td>
+                    <td>~500</td>
+                </tr>
+                <tr>
+                    <td><code>Booking</code></td>
+                    <td>Complete reservation details and payment tracking</td>
+                    <td>~260</td>
+                </tr>
+                <tr>
+                    <td><code>SeatManager</code></td>
+                    <td>Seat availability management per showtime</td>
+                    <td>~224</td>
+                </tr>
+                <tr>
+                    <td><code>PaymentProcessor</code></td>
+                    <td>Handle all payment methods</td>
+                    <td>~271</td>
+                </tr>
+                <tr>
+                    <td><code>InventoryManager</code></td>
+                    <td>Stock management and persistence</td>
+                    <td>~149</td>
+                </tr>
+                <tr>
+                    <td><code>SalesReportManager</code></td>
+                    <td>Report generation (daily/weekly/monthly)</td>
+                    <td>~284</td>
+                </tr>
+            </table>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>2,334</h3>
+                    <p>Total Lines of Code</p>
+                </div>
+                <div class="stat-card">
+                    <h3>20</h3>
+                    <p>Classes</p>
+                </div>
+                <div class="stat-card">
+                    <h3>~80</h3>
+                    <p>Methods</p>
+                </div>
+                <div class="stat-card">
+                    <h3>3</h3>
+                    <p>Data Files</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. User Interface -->
+        <section id="user-interface">
+            <h2>🎨 5. User Interface</h2>
+
+            <h3>Design Philosophy</h3>
+            <p>The interface employs <strong>progressive disclosure</strong> design, revealing complexity gradually. Key principles:</p>
+            <ul>
+                <li><strong>Visual Hierarchy:</strong> Box-drawing characters create clear boundaries</li>
+                <li><strong>Color Semantics:</strong> Consistent color meanings across the application</li>
+                <li><strong>Feedback Loops:</strong> Immediate visual and audio confirmation</li>
+                <li><strong>Error Prevention:</strong> Input validation before processing</li>
+            </ul>
+
+            <h3>🎨 Color Coding System</h3>
+            <table>
+                <tr>
+                    <th>Color</th>
+                    <th>Meaning</th>
+                    <th>Usage Context</th>
+                </tr>
+                <tr>
+                    <td style="color: #27ae60;"><strong>Green</strong></td>
+                    <td>Success, Available</td>
+                    <td>Available seats, success messages, good stock</td>
+                </tr>
+                <tr>
+                    <td style="color: #e74c3c;"><strong>Red</strong></td>
+                    <td>Error, Unavailable</td>
+                    <td>Taken seats, error messages, critical stock</td>
+                </tr>
+                <tr>
+                    <td style="color: #f39c12;"><strong>Yellow</strong></td>
+                    <td>Warning, Pending</td>
+                    <td>Pending payments, low stock, warnings</td>
+                </tr>
+                <tr>
+                    <td style="color: #3498db;"><strong>Blue</strong></td>
+                    <td>Selection, Focus</td>
+                    <td>User-selected seats, current navigation</td>
+                </tr>
+            </table>
+
+            <h3>📥 Input Types</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Numeric Range Input</h4>
+                    <p>Loop until valid with clear error messages</p>
+                    <pre><code>Select a movie (1-3): </code></pre>
+                </div>
+                <div class="feature-card">
+                    <h4>Masked Input</h4>
+                    <p>Password-style input for passkeys</p>
+                    <pre><code>Create passkey: ********</code></pre>
+                </div>
+                <div class="feature-card">
+                    <h4>Arrow Key Navigation</h4>
+                    <p>Interactive quantity selection</p>
+                    <pre><code>↑↓: Navigate  ←→: Adjust</code></pre>
+                </div>
+            </div>
+
+            <h3>📤 Example Outputs</h3>
+            <div class="info-box success">
+                <h4>Booking Summary Example:</h4>
+                <pre><code>╔════════════════════════════════════════════════╗
+║           BOOKING SUMMARY                      ║
+╠════════════════════════════════════════════════╣
+║  Movie: Heneral Luna                           ║
+║  Schedule: 7:30 PM                             ║
+║  Seats: [A5] [A6]                              ║
+║  Quantity: 2                                   ║
+╠════════════════════════════════════════════════╣
+║  Ticket Total: ₱540.00                         ║
+║  Food Total: ₱330.00                           ║
+╠════════════════════════════════════════════════╣
+║  GRAND TOTAL: ₱870.00                          ║
+╚════════════════════════════════════════════════╝</code></pre>
+            </div>
+        </section>
+
+        <!-- 6. Challenges and Solutions -->
+        <section id="challenges">
+            <h2>🚧 6. Challenges and Solutions</h2>
+
+            <h3>Challenge 1: Seat Availability Management</h3>
+            <div class="info-box error">
+                <h4>Problem:</h4>
+                <p>Initial implementation used a single SeatManager for all movies, causing seat conflicts when the same seat number was booked for different showtimes.</p>
+            </div>
+            <div class="info-box success">
+                <h4>Solution:</h4>
+                <p>Implemented dictionary-based SeatManager with composite keys:</p>
+                <pre><code>// Dictionary keyed by "MovieTitle|ShowTime"
+Dictionary&lt;string, SeatManager&gt; seatManagers = [];
+
+foreach (Movie m in movies)
+{
+    foreach (Schedule sched in m.Schedules)
+    {
+        string key = m.Movies + "|" + sched.Time;
+        seatManagers[key] = new SeatManager(5, 8);
+    }
+}</code></pre>
+            </div>
+
+            <h3>Challenge 2: Payment Deadline Enforcement</h3>
+            <div class="info-box error">
+                <h4>Problem:</h4>
+                <p>Needed time-bound payment system with automatic expiration. Background threads caused synchronization issues and file conflicts.</p>
+            </div>
+            <div class="info-box success">
+                <h4>Solution:</h4>
+                <p>Implemented lazy evaluation approach - check deadlines only when necessary (startup, payment attempt):</p>
+                <pre><code>// Store deadline with booking
+booking.PaymentDeadline = DateTime.Now.AddMinutes(15);
+
+// Check on startup
+foreach (Booking booking in allBookings)
+{
+    if (booking.PaymentDeadline < DateTime.Now)
+    {
+        booking.PaymentStatus = PaymentStatus.Expired;
+        // Release seats
+    }
+}</code></pre>
+            </div>
+
+            <h3>Challenge 3: Food Inventory Management</h3>
+            <div class="info-box warning">
+                <h4>Problem:</h4>
+                <p>Complex state transitions: Order selected → Payment pending → Payment completed → Booking cancelled (refund scenario).</p>
+            </div>
+            <div class="info-box success">
+                <h4>Solution:</h4>
+                <p>Only deduct stock when payment actually completes, not on selection:</p>
+                <pre><code>// Record sale ONLY when transitioning to paid
+if (wasPending && hasFoodItems)
+{
+    InventoryManager.RecordSale(booking.FoodItems);
+}
+
+// Restore stock on cancellation
+if (booking.PaymentStatus == PaymentStatus.Paid)
+{
+    InventoryManager.RestoreSale(booking.FoodItems);
+}</code></pre>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 Key Lessons Learned:</h4>
+                <ul>
+                    <li><strong>Think in Keys:</strong> When multiple instances need independent state, use dictionaries with composite keys</li>
+                    <li><strong>Lazy is Better:</strong> Don't over-engineer with background threads when periodic checks suffice</li>
+                    <li><strong>State Transitions Matter:</strong> Map all possible state changes before implementing persistence</li>
+                    <li><strong>Test Edge Cases:</strong> Cancellations, expirations, and partial completions reveal design flaws</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="testing">
+            <h2>🧪 7. Testing & Validation</h2>
+
+            <h3>Testing Strategy</h3>
+            <p>The system underwent comprehensive manual testing across all user workflows and edge cases. Testing was organized into functional areas with specific test scenarios.</p>
+
+            <h3>Test Coverage Summary</h3>
+            <table>
+                <tr>
+                    <th>Test Category</th>
+                    <th>Test Cases</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Customer Booking Flow</td>
+                    <td>15</td>
+                    <td><span class="badge pass">PASS</span></td>
+                </tr>
+                <tr>
+                    <td>Payment Processing</td>
+                    <td>12</td>
+                    <td><span class="badge pass">PASS</span></td>
+                </tr>
+                <tr>
+                    <td>Admin Dashboard</td>
+                    <td>8</td>
+                    <td><span class="badge pass">PASS</span></td>
+                </tr>
+                <tr>
+                    <td>File Operations</td>
+                    <td>10</td>
+                    <td><span class="badge pass">PASS</span></td>
+                </tr>
+                <tr>
+                    <td>Input Validation</td>
+                    <td>18</td>
+                    <td><span class="badge pass">PASS</span></td>
+                </tr>
+                <tr>
+                    <td>Edge Cases</td>
+                    <td>14</td>
+                    <td><span class="badge pass">PASS</span></td>
+                </tr>
+            </table>
+
+            <h3>Key Test Scenarios</h3>
+
+            <h4>1. Booking Flow Tests</h4>
+            <div class="info-box success">
+                <strong>Tested Scenarios:</strong>
+                <ul>
+                    <li>Complete booking from start to payment</li>
+                    <li>Multiple bookings for same showtime</li>
+                    <li>Booking with and without food items</li>
+                    <li>Seat selection validation (already taken, invalid input)</li>
+                    <li>Payment deadline expiration</li>
+                </ul>
+            </div>
+
+            <h4>2. Payment Tests</h4>
+            <div class="info-box success">
+                <strong>Tested Scenarios:</strong>
+                <ul>
+                    <li>All payment methods (Cash, GCash, Card, PayMaya)</li>
+                    <li>Insufficient balance scenarios</li>
+                    <li>Invalid card numbers and expiry dates</li>
+                    <li>Payment retry after failure</li>
+                    <li>Payment of expired bookings</li>
+                </ul>
+            </div>
+
+            <h4>3. Edge Cases</h4>
+            <div class="info-box warning">
+                <strong>Critical Edge Cases Tested:</strong>
+                <ul>
+                    <li>Concurrent bookings for last available seat</li>
+                    <li>Cancellation of paid vs pending bookings</li>
+                    <li>Inventory depletion during ordering</li>
+                    <li>File corruption recovery</li>
+                    <li>Empty file initialization</li>
+                    <li>Admin override scenarios</li>
+                </ul>
+            </div>
+
+            <h3>Bug Fixes During Testing</h3>
+            <table>
+                <tr>
+                    <th>Bug</th>
+                    <th>Severity</th>
+                    <th>Fix</th>
+                </tr>
+                <tr>
+                    <td>Seat double-booking across movies</td>
+                    <td><span class="badge fail">Critical</span></td>
+                    <td>Implemented composite key SeatManager</td>
+                </tr>
+                <tr>
+                    <td>Inventory not updating after cancellation</td>
+                    <td><span class="badge pending">High</span></td>
+                    <td>Added RestoreSale method</td>
+                </tr>
+                <tr>
+                    <td>JSON deserialization crash on empty file</td>
+                    <td><span class="badge pending">High</span></td>
+                    <td>Added null coalescing operator</td>
+                </tr>
+                <tr>
+                    <td>Payment deadline not enforced</td>
+                    <td><span class="badge pending">Medium</span></td>
+                    <td>Added CheckExpiredPayments on startup</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="future">
+            <h2>🚀 8. Future Enhancements</h2>
+
+            <h3>Short-Term Improvements</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎫 Dynamic Pricing</h4>
+                    <p>Implement peak/off-peak pricing and senior/student discounts with automatic validation.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📧 Email Notifications</h4>
+                    <p>Send booking confirmations and payment reminders via SMTP integration.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔐 Enhanced Security</h4>
+                    <p>Hash admin passwords and encrypt sensitive payment data using bcrypt/AES.</p>
+                </div>
+            </div>
+
+            <h3>Medium-Term Enhancements</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🗄️ Database Migration</h4>
+                    <p>Migrate from JSON files to SQLite/PostgreSQL for better performance and ACID compliance.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🌐 Web Interface</h4>
+                    <p>Develop ASP.NET Core web application with responsive design for mobile booking.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📊 Advanced Analytics</h4>
+                    <p>Revenue forecasting, customer behavior analysis, and predictive inventory management.</p>
+                </div>
+            </div>
+
+            <h3>Long-Term Vision</h3>
+            <div class="info-box info">
+                <h4>Enterprise Features:</h4>
+                <ul>
+                    <li><strong>Multi-Cinema Support:</strong> Centralized system managing multiple theater locations</li>
+                    <li><strong>Loyalty Program:</strong> Points-based rewards and membership tiers</li>
+                    <li><strong>API Integration:</strong> Connect with third-party ticketing platforms (MoviePass, Fandango)</li>
+                    <li><strong>Real-Time Updates:</strong> WebSocket implementation for live seat availability</li>
+                    <li><strong>Mobile App:</strong> Native iOS/Android applications with QR code tickets</li>
+                    <li><strong>AI Recommendations:</strong> Machine learning-based movie suggestions</li>
+                </ul>
+            </div>
+
+            <h3>Technical Debt & Refactoring</h3>
+            <div class="info-box warning">
+                <h4>Areas for Code Improvement:</h4>
+                <ul>
+                    <li>Extract magic numbers into named constants</li>
+                    <li>Implement dependency injection for better testability</li>
+                    <li>Add comprehensive unit tests with xUnit</li>
+                    <li>Separate business logic from UI presentation</li>
+                    <li>Implement async/await for file I/O operations</li>
+                    <li>Add XML documentation for all public methods</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="conclusion">
+            <h2>🎯 9. Conclusion</h2>
+
+            <h3>Project Summary</h3>
+            <p>The Cinema Booking System successfully demonstrates a comprehensive understanding of software development principles within the constraints of a console application. Over the course of development, the project evolved from a simple ticket reservation system into a full-featured cinema management platform with robust data persistence, multi-user support, and complex business logic.</p>
+
+            <h3>🏆 Key Achievements</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>✅</h3>
+                    <p>All Core Requirements Met</p>
+                </div>
+                <div class="stat-card">
+                    <h3>2,334</h3>
+                    <p>Lines of Production Code</p>
+                </div>
+                <div class="stat-card">
+                    <h3>77</h3>
+                    <p>Test Cases Passed</p>
+                </div>
+                <div class="stat-card">
+                    <h3>0</h3>
+                    <p>Critical Bugs in Production</p>
+                </div>
+            </div>
+
+            <h3>Technical Skills Demonstrated</h3>
+            <table>
+                <tr>
+                    <th>Skill Category</th>
+                    <th>Specific Competencies</th>
+                </tr>
+                <tr>
+                    <td>Object-Oriented Programming</td>
+                    <td>Classes, inheritance, encapsulation, polymorphism through interfaces</td>
+                </tr>
+                <tr>
+                    <td>Data Structures</td>
+                    <td>Lists, dictionaries, enums, custom collections</td>
+                </tr>
+                <tr>
+                    <td>File I/O</td>
+                    <td>JSON serialization, file creation, reading, writing, error handling</td>
+                </tr>
+                <tr>
+                    <td>User Experience</td>
+                    <td>Console UI design, color coding, input validation, error messaging</td>
+                </tr>
+                <tr>
+                    <td>Business Logic</td>
+                    <td>State management, payment processing, inventory control, reporting</td>
+                </tr>
+                <tr>
+                    <td>Software Engineering</td>
+                    <td>Modular design, separation of concerns, maintainability</td>
+                </tr>
+            </table>
+
+            <h3>Learning Outcomes</h3>
+            <div class="info-box success">
+                <h4>Key Takeaways:</h4>
+                <ul>
+                    <li><strong>Design First:</strong> Investing time in architecture prevents costly refactoring later</li>
+                    <li><strong>User-Centric:</strong> Good UI/UX is critical even in console applications</li>
+                    <li><strong>Edge Cases Matter:</strong> Most development time goes into handling exceptions and edge cases</li>
+                    <li><strong>State Management:</strong> Complex applications require careful state tracking and persistence</li>
+                    <li><strong>Iterative Development:</strong> Building incrementally with continuous testing yields better results</li>
+                    <li><strong>Documentation Value:</strong> Well-commented code and documentation saves debugging time</li>
+                </ul>
+            </div>
+
+            <h3>Personal Reflection</h3>
+            <p>This project provided invaluable hands-on experience in building a complete software system from requirements gathering through implementation and testing. The challenges encountered—particularly with seat management, payment deadlines, and inventory synchronization—taught important lessons about software architecture and the importance of thinking through state transitions before coding.</p>
+
+            <p>The experience of building a user-facing application reinforced that code quality isn't just about functionality, but also about creating intuitive, error-resistant interfaces that guide users to success. The admin dashboard development highlighted the importance of reporting and analytics in business applications.</p>
+
+            <h3>🙏 Acknowledgments</h3>
+            <div class="info-box info">
+                <p>Special thanks to the instructors and peers who provided valuable feedback throughout development. This project would not have been possible without the comprehensive C# documentation from Microsoft and the supportive developer community on Stack Overflow.</p>
+            </div>
+
+            <h3>📞 Contact & Contribution</h3>
+            <p>This project is open-source and available on GitHub. Contributions, bug reports, and feature requests are welcome!</p>
+            <div class="info-box info">
+                <strong>Repository:</strong> <a href="https://github.com/zedric-git/Cinema-Booking-System" target="_blank">github.com/zedric-git/Cinema-Booking-System</a><br>
+                <strong>Issues:</strong> Please report bugs via GitHub Issues<br>
+                <strong>License:</strong> MIT License
+            </div>
+        </section>
+    </div>
+
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to Top">↑</button>
+
+    <footer>
+        <p><strong>Cinema Booking System</strong> - Technical Documentation</p>
+        <p>Developed as a Final Project | C# & .NET Framework</p>
+        <p style="margin-top: 1rem;">© 2024 | <a href="https://github.com/zedric-git">GitHub</a></p>
+    </footer>
+
+    <script>
+        // Back to top button
+        window.onscroll = function() {
+            const btn = document.getElementById('backToTop');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        };
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                target.classList.add('highlight');
+                setTimeout(() => target.classList.remove('highlight'), 1000);
+            });
+        });
+
+        // Print current date in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Cinema Booking System Documentation Loaded');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+[
+  {
+    "Movie": "Heneral Luna",
+    "Schedule": "12:30 PM",
+    "Price": 250,
+    "Quantity": 1,
+    "Seats": [
+      "A1"
+    ],
+    "ReservationID": "R-890621",
+    "Passkey": "123",
+    "ReservationTime": "2025-12-12T13:40:37.1620438+08:00",
+    "LastModified": "2025-12-12T13:40:47.5905671+08:00",
+    "FoodItems": {},
+    "FoodTotal": 0,
+    "PaymentStatus": 1,
+    "PaymentMethod": "Cash",
+    "PaymentReference": "CASH-337431",
+    "PaymentDeadline": "2025-12-12T13:55:40.6973205+08:00",
+    "AmountPaid": 250,
+    "Discount": 0,
+    "AdminNotes": ""
+  },
+  {
+    "Movie": "Conjuring V",
+    "Schedule": "3:00 AM",
+    "Price": 300,
+    "Quantity": 1,
+    "Seats": [
+      "C3"
+    ],
+    "ReservationID": "R-875367",
+    "Passkey": "123",
+    "ReservationTime": "2025-12-12T14:00:39.391546+08:00",
+    "LastModified": "2025-12-12T14:00:46.5541925+08:00",
+    "FoodItems": {
+      "Popcorn Large": 1,
+      "Popcorn Paper Bucket": 1,
+      "Classic Hotdog": 1,
+      "Chicken Nuggets": 1,
+      "Iced Tea": 1,
+      "Iced Coffee": 4
+    },
+    "FoodTotal": 740,
+    "PaymentStatus": 1,
+    "PaymentMethod": "Cash",
+    "PaymentReference": "CASH-875403",
+    "PaymentDeadline": "2025-12-12T14:15:42.7480492+08:00",
+    "AmountPaid": 1040,
+    "Discount": 0,
+    "AdminNotes": ""
+  }
+]
